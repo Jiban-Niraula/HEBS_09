@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Target Attributes Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .box { padding: 20px; border-radius: 8px; }
+        .level-1 { background-color: #e0f7fa; border: 3px solid #00acc1; } /* Light Cyan */
+    </style>
+</head>
+<body class="box level-1">
+    
+    <h1>Level 1: Top Window <code>(_top)</code></h1>
+    <p>This is the main browser window. If you use <strong>_top</strong>, the link will break out of all iframes and take over this entire page.</p>
+
+    <!-- LEVEL 2: PARENT IFRAME -->
+    <iframe width="100%" height="450" style="border: none;" srcdoc="
+        <style>
+            body { font-family: Arial, sans-serif; }
+            .level-2 { background-color: #e8f5e9; border: 3px dashed #43a047; padding: 20px; height: 380px; border-radius: 8px;} /* Light Green */
+        </style>
+        <div class='level-2'>
+            <h2>Level 2: Parent Frame <code>(_parent)</code></h2>
+            <p>If you use <strong>_parent</strong> from the frame below, the link will load inside this green box.</p>
+
+            <!-- LEVEL 3: CHILD IFRAME -->
+            <iframe width='100%' height='240' style='border: none;' srcdoc='
+                <style>
+                    body { font-family: Arial, sans-serif; }
+                    .level-3 { background-color: #ffebee; border: 3px dotted #e53935; padding: 20px; height: 180px; border-radius: 8px;} /* Light Red */
+                    a { display: block; margin-bottom: 15px; font-size: 16px; font-weight: bold; color: #000; }
+                </style>
+                <div class=&quot;level-3&quot;>
+                    <h3>Level 3: Child Frame <code>(_self)</code></h3>
+                    
+                    <a href=&quot;https://example.com&quot; target=&quot;_self&quot;>
+                        1. _self &rarr; Opens right here inside the red box
+                    </a>
+                    
+                    <a href=&quot;https://example.com&quot; target=&quot;_parent&quot;>
+                        2. _parent &rarr; Opens in the green box (Level 2)
+                    </a>
+                    
+                    <a href=&quot;https://example.com&quot; target=&quot;_top&quot;>
+                        3. _top &rarr; Breaks out and replaces the entire cyan page (Level 1)
+                    </a>
+                    
+                    <a href=&quot;https://example.com&quot; target=&quot;_blank&quot;>
+                        4. _blank &rarr; Opens in a brand new tab
+                    </a>
+                </div>
+            '></iframe>
+        </div>
+    "></iframe>
+
+</body>
+</html>
